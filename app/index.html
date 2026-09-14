@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Für Iza 💕</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="confetti"></canvas>
+<div id="sky"></div>
+
+<!-- ══════════ HEART-LINE NAV (floating functional layer) ══════════ -->
+<nav id="heart-nav" hidden aria-label="Seitennavigation">
+  <a href="#top" class="nav-dot" data-section="top" aria-label="Anfang"><span class="dot-core"></span><span class="nav-tip">Anfang</span></a>
+  <a href="#buecher" class="nav-dot" data-section="buecher" aria-label="Reisebücher"><span class="dot-core"></span><span class="nav-tip">Reisebücher</span></a>
+  <a href="#karte" class="nav-dot" data-section="karte" aria-label="Karte"><span class="dot-core"></span><span class="nav-tip">Karte</span></a>
+  <a href="#liebling" class="nav-dot" data-section="liebling" aria-label="Lieblingsfoto"><span class="dot-core"></span><span class="nav-tip">Liebling</span></a>
+  <a href="#archiv" class="nav-dot" data-section="archiv" aria-label="Erinnerungen"><span class="dot-core"></span><span class="nav-tip">Erinnerungen</span></a>
+  <a href="#herz" class="nav-dot" data-section="herz" aria-label="Für immer"><span class="dot-core"></span><span class="nav-tip">Für immer</span></a>
+</nav>
+
+<!-- ══════════ LOGIN ══════════ -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="lock-wrap">
+      <div class="lock">
+        <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#6e1f30" stroke-width="1.8" aria-hidden="true">
+          <rect x="5" y="11" width="14" height="9" rx="2"/>
+          <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+          <circle cx="12" cy="15.5" r="1.4" fill="#6e1f30" stroke="none"/>
+        </svg>
+      </div>
+      <div class="lock-hearts"><span>💗</span><span>💗</span><span>💗</span></div>
+    </div>
+    <h1 class="script-title">Nur für Iza</h1>
+    <p class="login-sub">Gib dein Geheimnis ein, mein Schatz…</p>
+    <div id="pin-dots" aria-label="Eingabe">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </div>
+    <div id="numpad">
+      <button class="key" data-digit="1">1<span class="key-letters">&nbsp;</span></button>
+      <button class="key" data-digit="2">2<span class="key-letters">ABC</span></button>
+      <button class="key" data-digit="3">3<span class="key-letters">DEF</span></button>
+      <button class="key" data-digit="4">4<span class="key-letters">GHI</span></button>
+      <button class="key" data-digit="5">5<span class="key-letters">JKL</span></button>
+      <button class="key" data-digit="6">6<span class="key-letters">MNO</span></button>
+      <button class="key" data-digit="7">7<span class="key-letters">PQRS</span></button>
+      <button class="key" data-digit="8">8<span class="key-letters">TUV</span></button>
+      <button class="key" data-digit="9">9<span class="key-letters">WXYZ</span></button>
+      <button class="key key-fn" id="key-back" aria-label="Löschen">⌫</button>
+      <button class="key" data-digit="0">0<span class="key-letters">&nbsp;</span></button>
+      <button class="key key-fn" id="key-heart" aria-label="Glück">❤</button>
+    </div>
+    <p id="login-msg">Psst… 6 kleine Zahlen</p>
+  </div>
+</div>
+
+<!-- ══════════ MAIN ══════════ -->
+<main id="content" hidden>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">eine Liebeserklärung</p>
+        <h1 class="hero-title">Für <span class="highlight">Iza</span></h1>
+        <svg class="flourish" viewBox="0 0 220 26" aria-hidden="true">
+          <path class="flourish-path" d="M4 16 C 40 4, 70 26, 110 14 C 150 2, 180 24, 216 12"
+                fill="none" stroke="#a87f42" stroke-width="1.4" stroke-linecap="round"/>
+          <path class="flourish-heart" d="M110 22 c -3 -4 -8 -2 -8 2 c 0 3 4 6 8 9 c 4 -3 8 -6 8 -8 c 0 -4 -5 -6 -8 -2 z"
+                fill="#6e1f30"/>
+        </svg>
+        <p id="typewriter" aria-live="off"></p>
+        <p class="hero-sign">— dein Dumi</p>
+      </div>
+      <div class="hero-photo">
+        <div class="polaroid">
+          <div class="tape"></div>
+          <img src="assets/her.jpg" alt="Iza" fetchpriority="high">
+          <p class="polaroid-caption">meine Iza</p>
+          <div class="sparkles"><span>✦</span><span>✦</span><span>✦</span><span>✦</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="bounce-down" aria-hidden="true">↓</div>
+  </header>
+
+  <!-- BOOKSHELF -->
+  <section class="band shelf-band" id="buecher">
+    <p class="eyebrow eyebrow-onDark">unsere Reisen</p>
+    <h2 class="script-title section-title light">Reisebücher</h2>
+    <p class="cute-text light small">eine Stadt pro Buch — klappe sie auf</p>
+    <div id="bookshelf" class="bookshelf reveal"></div>
+  </section>
+
+  <!-- MAP -->
+  <section class="section map-section" id="karte">
+    <p class="eyebrow">unsere Orte</p>
+    <h2 class="script-title section-title">Unsere Karte</h2>
+    <p class="cute-text small">jeder Pin ist ein Ort, an dem wir zusammen waren</p>
+    <div class="map-frame reveal">
+      <div id="map" role="region" aria-label="Karte unserer Orte"></div>
+    </div>
+  </section>
+
+  <!-- FAVOURITE -->
+  <section class="favourite-section" id="liebling">
+    <div class="fav-copy reveal">
+      <p class="eyebrow">das eine Foto</p>
+      <h2 class="script-title section-title">Unser Lieblingsfoto</h2>
+      <p class="cute-text">du &amp; ich —<br>für immer mein Lieblingsbild.<br>kein Foto der Welt kommt ran.</p>
+    </div>
+    <div class="fav-frame-wrap reveal">
+      <div class="fav-frame">
+        <div class="fav-tape tape-left"></div>
+        <div class="fav-tape tape-right"></div>
+        <img src="assets/favourite.jpg" alt="Unser Lieblingsfoto" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ANNIVERSARY -->
+  <section class="band anniversary">
+    <p class="eyebrow">seit dem</p>
+    <h2 class="date-big">22.03.2026</h2>
+    <p class="cute-text">der schönste Tag meines Lebens —<br>an dem du in mein Leben gehüpft bist.</p>
+  </section>
+
+  <!-- MOVIES: cinema -->
+  <section class="band cinema">
+    <p class="eyebrow eyebrow-light">unsere Filme</p>
+    <h2 class="script-title section-title light">Culpa Mía · Tuya · Nuestra</h2>
+    <div class="movies">
+      <div class="movie-card"><div class="movie-num">I</div><h3>Culpa Mía</h3><p class="movie-german">Meine Schuld</p></div>
+      <div class="movie-card"><div class="movie-num">II</div><h3>Culpa Tuya</h3><p class="movie-german">Deine Schuld</p></div>
+      <div class="movie-card"><div class="movie-num">III</div><h3>Culpa Nuestra</h3><p class="movie-german">Unsere Schuld</p></div>
+    </div>
+    <p class="cute-text light">Popcorn, Kuscheldecke — du &amp; ich. Die besten Filmabende überhaupt.</p>
+  </section>
+
+  <!-- DOGS: dignified -->
+  <section class="band dogs-band">
+    <p class="eyebrow">und natürlich</p>
+    <h2 class="script-title section-title">Hunde</h2>
+    <div class="paw-flourish" aria-hidden="true">
+      <svg viewBox="0 0 120 34" width="120" height="34">
+        <g fill="#6e1f30">
+          <ellipse cx="42" cy="20" rx="7" ry="5.4"/>
+          <circle cx="34" cy="12" r="2.6"/>
+          <circle cx="41" cy="9.4" r="2.6"/>
+          <circle cx="48" cy="10.4" r="2.5"/>
+          <circle cx="53" cy="14.4" r="2.3"/>
+          <path d="M78 20 c -3 -4 -8 -2 -8 2 c 0 3 4 6 8 8 c 4 -2 8 -5 8 -8 c 0 -4 -5 -6 -8 -2 z"/>
+        </g>
+        <path d="M60 18 h 6" stroke="#a87f42" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <p class="cute-text">Du liebst Hunde. Ich liebe dich.<br>Und Hunde auch — also passen wir perfekt zusammen.</p>
+  </section>
+
+  <!-- HOME 2027 -->
+  <section class="band home-band">
+    <div class="home-crest" aria-hidden="true">
+      <svg viewBox="0 0 64 64" width="72" height="72">
+        <path d="M12 30 L32 13 L52 30" fill="none" stroke="#a87f42" stroke-width="2" stroke-linecap="round"/>
+        <path d="M17 28 V 50 H 47 V 28" fill="none" stroke="#6e1f30" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M27 50 V 38 H 37 V 50" fill="none" stroke="#6e1f30" stroke-width="2.2"/>
+        <path d="M32 33 c -2 -3 -5.5 -1.4 -5.5 1.4 c 0 2.4 3 4.6 5.5 6.4 c 2.5 -1.8 5.5 -4 5.5 -6.4 c 0 -2.8 -3.5 -4.4 -5.5 -1.4 z" fill="#a87f42"/>
+      </svg>
+    </div>
+    <h2 class="script-title section-title">Nächstes Jahr ziehen wir zusammen ein</h2>
+    <p class="cute-text">unser eigenes Zuhause — mit Sofakissen, Ketchup-Chaos,<br>vielleicht einem Hund und ganz viel Liebe.</p>
+  </section>
+
+  <!-- GALLERY: the archive -->
+  <section class="section gallery-section" id="archiv">
+    <p class="eyebrow">das Archiv</p>
+    <h2 class="script-title section-title">Unsere Erinnerungen</h2>
+    <p class="cute-text small">alles — von ganz Anfang bis heute. klick sie an!</p>
+    <div id="gallery"></div>
+    <div class="versteckt-chip-wrap">
+      <button id="hidden-btn" title="…?">versteckt</button>
+    </div>
+  </section>
+
+  <!-- FINALE -->
+  <section class="finale" id="herz">
+    <div class="big-heart" role="button" tabindex="0" aria-label="Konfetti!" id="big-heart-btn">
+      <svg viewBox="0 0 120 110" width="150" height="138" aria-hidden="true">
+        <defs>
+          <linearGradient id="heartGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#8c2438"/>
+            <stop offset=".55" stop-color="#6e1f30"/>
+            <stop offset="1" stop-color="#4a1420"/>
+          </linearGradient>
+        </defs>
+        <path class="heart-beat" d="M60 98 C 26 74 8 56 8 38 C 8 20 22 10 36 10 C 47 10 56 16 60 25 C 64 16 73 10 84 10 C 98 10 112 20 112 38 C 112 56 94 74 60 98 Z"
+              fill="url(#heartGrad)"/>
+        <path d="M60 90 C 32 70 16 54 16 38" fill="none" stroke="#e8cfa0" stroke-width="1.6" stroke-linecap="round" opacity=".65"/>
+        <circle cx="42" cy="30" r="4.5" fill="#e8cfa0" opacity=".5"/>
+        <circle cx="50" cy="22" r="2.5" fill="#e8cfa0" opacity=".4"/>
+      </svg>
+    </div>
+    <h2 class="finale-text">Ich liebe dich bis zum Tod</h2>
+    <p class="script-title names">Iza <span class="amp">❦</span> Dumi</p>
+    <p class="finale-sub">für immer &amp; ewig. ∞</p>
+  </section>
+
+  <footer class="footer">
+    <p>gemacht mit Liebe, zu viel Kaffee und noch mehr Liebe · Dumi für Iza · seit 22.03.26</p>
+  </footer>
+</main>
+
+<!-- ══════════ LIGHTBOX ══════════ -->
+<div id="lightbox" hidden>
+  <button class="lb-btn" id="lb-close" aria-label="Schließen">✕</button>
+  <button class="lb-btn lb-nav" id="lb-prev" aria-label="Zurück">❮</button>
+  <img id="lb-img" src="" alt="Erinnerung">
+  <button class="lb-btn lb-nav" id="lb-next" aria-label="Weiter">❯</button>
+  <p id="lb-caption"></p>
+</div>
+
+<!-- ══════════ BOOK VIEWER ══════════ -->
+<div id="book-modal" hidden>
+  <div class="book-stage">
+    <button class="lb-btn book-close" id="book-close" aria-label="Buch schließen">✕</button>
+    <div class="book" id="book">
+      <div class="page page-left" id="page-left"></div>
+      <div class="spine"></div>
+      <div class="page page-right" id="page-right"></div>
+      <div class="flip-leaf" id="flip-leaf"><div class="leaf-face leaf-front"></div><div class="leaf-face leaf-back"></div></div>
+      <div class="hotspot hotspot-left" id="hot-left" aria-hidden="true"></div>
+      <div class="hotspot hotspot-right" id="hotspot-right" aria-hidden="true"></div>
+    </div>
+    <div class="book-caption">
+      <span class="script-title" id="book-city">Stadt</span>
+      <span class="cap-sep">·</span>
+      <span id="book-count"></span>
+      <span class="cap-sep">·</span>
+      <span id="book-range"></span>
+    </div>
+    <div class="book-controls">
+      <button id="book-prev" class="page-btn" aria-label="Seite zurück">❮</button>
+      <span id="book-progress"></span>
+      <button id="book-next" class="page-btn" aria-label="Seite weiter">❯</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ KITZEL ══════════ -->
+<div id="kitzel-popup" hidden>
+  <div class="kitzel-card">
+    <div class="kitzel-emojis"><span>😜</span><span>🤭</span><span>😄</span><span>💕</span></div>
+    <p class="kitzel-text">du hast dir ein kitzel verdient</p>
+    <p class="kitzel-sub">*kitzel kitzel* 😆💕</p>
+    <button id="kitzel-close">hehe ok 💕</button>
+  </div>
+</div>
+
+<button id="music-toggle" hidden title="Musik" aria-label="Musik an/aus">
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+    <path d="M9 18V6l10-2v11"/>
+    <circle cx="7" cy="18" r="2.6"/><circle cx="17" cy="15" r="2.6"/>
+  </svg>
+</button>
+
+<audio id="bg-music" loop preload="auto"><source src="assets/song.mp3" type="audio/mpeg"></audio>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
